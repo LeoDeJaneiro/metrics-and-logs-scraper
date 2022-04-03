@@ -6,9 +6,17 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: https://{{grafana_user}}:{{grafana_key}}@{{grafana_loki_host}}
+  - url: https://{{grafana_loki_user}}:{{grafana_key}}@{{grafana_loki_host}}
 
 scrape_configs:
+- job_name: system
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: varlogs
+      __path__: /var/log/*.log
+
 - job_name: docker
   static_configs:
   - targets:

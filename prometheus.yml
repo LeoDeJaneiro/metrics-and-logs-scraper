@@ -20,5 +20,5 @@ scrape_configs:
 remote_write:
   - url: "https://{{grafana_prom_host}}"
     basic_auth:
-      username: "{{grafana_user}}"
+      username: "{{grafana_prom_user}}"
       password: "{{grafana_key}}"
