@@ -11,8 +11,14 @@ scrape_configs:
     static_configs:
     - targets: ["node-exporter:9100"]
 
+  - job_name: "api_metrics"
+    scrape_interval: 5s
+    metrics_path: /api/metrics
+    static_configs:
+    - targets: ["api:3033"]
+
 remote_write:
-  - url: "{{url}}"
+  - url: "https://{{grafana_prom_host}}"
     basic_auth:
-      username: "{{username}}"
-      password: "{{password}}"
+      username: "{{grafana_user}}"
+      password: "{{grafana_key}}"

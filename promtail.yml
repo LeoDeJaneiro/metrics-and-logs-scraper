@@ -1,0 +1,19 @@
+server:
+  http_listen_port: 0
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: https://{{grafana_user}}:{{grafana_key}}@{{grafana_loki_host}}
+
+scrape_configs:
+- job_name: docker
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: dockerlogs
+      __path__: /var/lib/docker/containers/*/*-json.log
+
